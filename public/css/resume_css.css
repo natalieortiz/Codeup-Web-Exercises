@@ -8,11 +8,19 @@ body {
     color: white;
     font-family: 'Josefin Sans', sans-serif;
 }
-.navstyle a:link {
+.myname {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-weight: bold;
+    font-size: 1em;
+}
+.navstyle ul a:link {
     color: white;
 }
-.navstyle a:visited {
+.navstyle ul a:visited {
     color: rgb(179,163,148);
+}
+.navstyle ul a:hover {
+    color: rgb(245,105,86);
 }
 .mainheading{
   font-family: 'Sorts Mill Goudy', serif;
@@ -25,19 +33,7 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.footer {
-    padding-left: 15px;
-    background-color: rgb(5,104,34); 
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 1em;
-    color: white;
-}
-.footer h3 {s
-    text-align: left;
-    font-family: 'Sorts Mill Goudy', serif;
-    text-decoration: underline;
-}
+
 .top {
     padding-top: 200px;
     background-image: url(/img/IMG_0485.jpg);
@@ -69,6 +65,7 @@ body {
 .objective p {
     padding-top: 25px;
     padding-left: 50px;
+    padding-right: 50px; 
     padding-bottom: 50px;
 }
 .skills {
@@ -81,8 +78,9 @@ body {
 }
 
 .edutext{
-    padding-top: 50px;
-    line-height: 200%; 
+    padding-top: 10px;
+    line-height: 225%;
+    font-size: 1.2em; 
 }
 .education img{
     width: 400px;
@@ -90,8 +88,8 @@ body {
 .education h1 {
   font-family: 'Sorts Mill Goudy', serif;
   text-align: center;
-  padding-bottom: 15px;
-  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-top: 30px;
   font-size: 2em;
   color: rgb(255,223,50);
 }
@@ -107,5 +105,17 @@ body {
 .skills {
     text-align: center;
 }
-
+.footer {
+    padding-left: 15px;
+    color: rgb(255,223,50);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 1em;
+    background-color: rgb(16,37,66);
+}
+.footer h3 {s
+    text-align: left;
+    font-family: 'Sorts Mill Goudy', serif;
+    text-decoration: underline;
+}
 
