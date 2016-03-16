@@ -31,4 +31,4 @@ if (color == 'red') {
 }
 
 
- console.log ((color == favorite) ? "That is my favorite color." : "That is not my favorite color.");
+ console.log ((color === favorite) ? "That is my favorite color." : "That is not my favorite color.");
