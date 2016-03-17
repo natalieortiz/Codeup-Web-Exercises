@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Break Continue</title>
+
+<script type="text/javascript">
+"use strict";   
+
+
+do {
+    var random = Math.floor((Math.random()*50)+1); 
+} while (random % 2 == 0);
+
+console.log("Random odd number to skip: " + random);
+
+for (var i = 1; i < 50; i++) {
+    if (i === random) {
+        console.log ("Yikes! Skipping number: " + random);
+        continue;  
+    }
+    if (i % 2 == 1 ){
+        console.log("Here is an odd number: " + i);
+    }
+}
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>
