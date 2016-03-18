@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scope JS</title>
+
+<script type="text/javascript">
+
+(function () {
+"use strict";
+
+var myNameIs = "Natalie"; 
+
+function sayHello (name) {
+    console.log ("Hello " + name + "!");
+
+}
+
+sayHello(myNameIs);
+
+
+var random = Math.floor((Math.random()*100)+1);
+
+
+function isOdd (random) {
+    console.log ((random % 2 == 1) ? "The number is odd." : "The number is not odd.");
+}
+
+isOdd(random);
+
+
+})();
+
+
+</script>    
+</head>
+<body>
+
+</body>
+</html>
