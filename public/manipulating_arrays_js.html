@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planets</title>
+</head>
+<body>
+<script type="text/javascript">
+    (function (){
+    "use strict";
+        // todo:
+// Create an array holding the names of the planets of our solar system (in order, starting closest to the sun).
+var planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+
+// function for logging the planets array
+function logPlanets() {
+    console.log('Here is the list of planets:');
+    console.log(planets);
+}
+    
+    planets.unshift("The Sun");
+
+    console.log('Adding "The Sun" to the beginning of the planets array.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+    planets.push("Pluto");
+    console.log('Adding "Pluto" to the end of the planets array.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+    planets.shift("The Sun");
+    console.log('Removing "The Sun" from the beginning of the planets array.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+    planets.pop(); 
+    console.log('Removing "Pluto" from the end of the planets array.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+    
+    console.log('Finding and logging the index of "Earth" in the planets array.');
+    console.log (planets.indexOf("Earth"));
+    // todo: Do what the log statement above says you will do.
+    planets.splice(3, 1);
+    console.log('Using splice to remove the planet after Earth.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+    planets.splice(3, 0, "Mars");
+    console.log('Using splice to add back the planet after Earth.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+    planets.reverse();
+    console.log('Reversing the order of the planets array.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+    planets.sort();
+    console.log('Sorting the planets array.');
+    // todo: Do what the log statement above says you will do.
+    logPlanets();
+
+
+})();
+</script>
+
+</body>
+</html>
