@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Object</title>
+</head>
+<body>
+<script type="text/javascript">
+    (function  () {
+    "use strict";
+
+    var player_name = prompt('What is your name?');
+
+    var player_1 = {};
+
+    //Create properties (variables)
+    player_1.name = "Tim Duncan";
+    player_1.power = 100;
+    player_1.speed = 100;
+    player_1.stamina = 20;
+    player_1.defense = 20;
+
+    //Creat methods (function)
+    player_1.intro = function () {
+        console.log('Hello' + this.name);
+    }
+    
+    player_1.attack = function () {
+        console.log('attacking');
+    }
+
+    player_1.run = function () {
+        console.log('running');
+    }
+
+    player_1.injured = function () {
+        this.power--; //referring to the object in which I'm in.  Ex. player_1.
+    }
+
+    player_1.showPower = function (){
+        console.log(this.power);
+    }
+
+    })();
+
+</script>
+
+</body>
+</html>
