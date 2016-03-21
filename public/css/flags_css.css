@@ -42,10 +42,21 @@
     background-color: red;     
 }
 .circle {
+    float: left;
     background-color: white;
     width: 36.96px;
     height: 36.96px;
+    margin-right: 37.8px;
     margin-top: 13.82px;
     margin-left: 19.32px;
+    border-radius: 50%;
+}
+.circle1 {
+    float: left;
+    background-color: white;
+    width: 36.96px;
+    height: 36.96px;
+    margin-right: 34px;
+    margin-top: 13.82px;
     border-radius: 50%;
 }
