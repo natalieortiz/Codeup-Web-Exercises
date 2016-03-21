@@ -7,16 +7,38 @@
 <script type="text/javascript">
     
     (function (){
-        var movies = ["Jurassic World", "The Blues Brothers", "Brave", "Inside Out", "Ghostbusters", "Rudy", "Beetlejuice", "Rushmore", "Zootopia", "The Muppet Movie"];
-        movies.forEach(function (element){
-            if (element == "Rushmore") { 
-                console.log("This is my favorite: " + element);
-            } else {
-                console.log(element)
-            };
-        });
-    })();
-</script>
+        "use strict";
+        var favoriteMovies = ["Jurassic World", "The Blues Brothers", "Brave", "Inside Out", "Ghostbusters", "Rudy", "Beetlejuice", "Rushmore", "The Sound of Music", "The Muppet Movie"];
 
-</body>
-</html>
+        var otherMovies = [];
+
+        favoriteMovies.sort(favoriteMovies);
+        
+        var movieIndex = favoriteMovies.indexOf("Rushmore");
+        var topMovie = favoriteMovies.splice(movieIndex, 1);
+
+
+        favoriteMovies.unshift(topMovie[0]);
+
+        var movieIndex = favoriteMovies.indexOf("Beetlejuice");
+        var leastMovie = favoriteMovies.splice(movieIndex, 1);
+
+        favoriteMovies.push(leastMovie[0]);
+        
+        favoriteMovies.forEach(function (element, index){
+            
+            if (element == topMovie[0]) { 
+                console.log("My all time favorite movie is " + topMovie[0] + '.');
+        
+            } else if (element == leastMovie[0]) {
+                console.log("My least favorite movie is " + leastMovie[0] + '.' );
+                
+            } else 
+                otherMovies.push(favoriteMovies[index]);
+        });
+
+        var stringMovies = otherMovies.join(', ');
+        console.log("Some other movies are " + stringMovies + '.');
+        
+    })(); 
+</script>
