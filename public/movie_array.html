@@ -25,12 +25,12 @@
 
         favoriteMovies.push(leastMovie[0]);
         
-        favoriteMovies.forEach(function (element, index){
+        favoriteMovies.forEach(function (movie, index){
             
-            if (element == topMovie[0]) { 
+            if (movie == topMovie[0]) { 
                 console.log("My all time favorite movie is " + topMovie[0] + '.');
         
-            } else if (element == leastMovie[0]) {
+            } else if (movie == leastMovie[0]) {
                 console.log("My least favorite movie is " + leastMovie[0] + '.' );
                 
             } else 
@@ -39,6 +39,7 @@
 
         var stringMovies = otherMovies.join(', ');
         console.log("Some other movies are " + stringMovies + '.');
+        console.log(favoriteMovies);
         
     })(); 
 </script>
