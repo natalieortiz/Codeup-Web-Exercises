@@ -1,0 +1,24 @@
+.btn_size {
+    height: 50px;
+    width: 50px;
+    margin-left: 5px;
+    margin-top: 2px;
+    font-size: 1.5em;
+}
+
+.input {
+    margin-left: 5px;
+} 
+.left_operand {
+    width: 80px;
+    height: 40px; 
+}
+
+.operator {
+    width: 60px;
+    height: 40px;;
+}
+.right_operand {
+    width: 80px;
+    height: 40px;
+}
