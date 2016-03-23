@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extra Timing Practice</title>
+     <style>
+        .fancy-header {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    "use strict";
+    
+    var interval = 750;
+    var delay = 5000;
+    
+    var intervalID = setInterval(function(){
+        console.log("testing")
+    }, interval);
+
+    var timeoutID = setTimeout(function(){
+        clearTimeout(intervalID);
+    }, delay);
+    
+
+</script>
+
+</body>
+</html>
