@@ -6,47 +6,64 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,500,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/calculator-css.css">
 
 </head>
 <body>
-<h1 class="heading1">Calculator</h1>
-<div class="container-fluid">
-
+<div class="container">
 <div class="row">
-    <form class="form-inline input_row">
-        <div class="row center">
-            <input type="text" class="left_operand" id="left_operand">
+    <div class="col-md-12 spacer">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <div class="box">
+        <form class="form-inline input_row borders">
+            <h1 class="heading1">Calculator</h1>
+            <div class="row center">
+                <input type="text" class="left_operand" id="left_operand">
 
-            <input type="text" class="operator_style" id="operator">
+                <input type="text" class="operator_style" id="operator">
 
-            <input type="text" class="right_operand" id="right_operand">
+                <input type="text" class="right_operand" id="right_operand">
+            </div>
+            <div class="top row center">
+                <button type="button" class="btn btn-primary btn_size num-btn" id="one" data-number="1">1</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="two" data-number="2">2</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="three" data-number="3">3</button>
+                <button type="button" class="btn btn-info btn_size operator" id="plus" data-operator="+">+</button>
+            </div>
+            <div class="row center">
+                <button type="button" class="btn btn-primary btn_size num-btn" id="four" data-number="4">4</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="five" data-number="5">5</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="six" data-number="6">6</button>
+                <button type="button" class="btn btn-info btn_size operator" id="minus" data-operator="-">-</button>
+            </div>
+            <div class="row center">
+                <button type="button" class="btn btn-primary btn_size num-btn" id="seven" data-number="7">7</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="eight" data-number="8">8</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="nine" data-number="9">9</button>
+                <button type="button" class="btn btn-info btn_size operator" id="multiply" data-operator="*">*</button>
+            </div>
+            <div class="row center">
+                <button type="button" class="btn btn-primary btn_size num-btn" id="zero" data-number="0">0</button>
+                <button type="button" class="btn btn-primary btn_size" id="decimal" data-number=".">.</button>
+                <button type="button" class="btn btn-primary btn_size num-btn" id="sign" data-number="-">+/-</button>
+                <button type="button" class="btn btn-info btn_size operator" data-operator="/" id="divide">/</button>
+            </div>
+                <div class="row center">
+                <button type="button" class="btn btn-info btn_size_big" id="clear">CLEAR</button>
+                <button type="button" class="btn btn-success btn_size" id="equals">=</button>
+                <button type="button" class="btn btn-info btn_size" data-operator="%" id="percentage">%</button>
+            </div>
+        </form>
         </div>
-        <div class="top row center">
-            <button type="button" class="btn btn-primary btn_size num-btn" id="one" data-number="1">1</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="two" data-number="2">2</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="three" data-number="3">3</button>
-            <button type="button" class="btn btn-warning btn_size operator" id="plus" data-operator="+">+</button>
-        </div>
-        <div class="row center">
-            <button type="button" class="btn btn-primary btn_size num-btn" id="four" data-number="4">4</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="five" data-number="5">5</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="six" data-number="6">6</button>
-            <button type="button" class="btn btn-warning btn_size operator" id="minus" data-operator="-">-</button>
-        </div>
-        <div class="row center">
-            <button type="button" class="btn btn-primary btn_size num-btn" id="seven" data-number="7">7</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="eight" data-number="8">8</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="nine" data-number="9">9</button>
-            <button type="button" class="btn btn-warning btn_size operator" id="multiply" data-operator="*">*</button>
-        </div>
-        <div class="row center">
-            <button type="button" class="btn btn-warning btn_size" id="clear">C</button>
-            <button type="button" class="btn btn-primary btn_size num-btn" id="zero" data-number="0">0</button>
-            <button type="button" class="btn btn-success btn_size" id="equals">=</button>
-            <button type="button" class="btn btn-warning btn_size operator" data-operator="/" id="divide">/</button>
-        </div>
-    </form>
+    </div>
+    <div class="col-md-4">
+    </div>
 </div>        
 <script src="js/calculator-js.js"></script>
 
