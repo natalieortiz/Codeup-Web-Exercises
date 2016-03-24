@@ -35,7 +35,7 @@
     var sign = document.getElementById('sign');
     sign.addEventListener('click', function(){
         var negativeNum; 
-        if (inputState == true) {
+        if (inputState == true && parseFloat(document.getElementById('left_operand').value) >= 0) {
             negativeNum = parseFloat(document.getElementById('left_operand').value) * -1;
             document.getElementById('left_operand').value = negativeNum;
         } else if (inputState == false) {
