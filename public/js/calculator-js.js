@@ -1,7 +1,7 @@
 (function (){
     
-    var decimal1 = true;
-    var decimal2 = true; 
+    var checker1 = true;
+    var checker2 = true; 
     var inputState = true; 
 
     //Clicking on numbers.      
@@ -21,12 +21,12 @@
     //Add a decimal to a number.  
     var decimal = document.getElementById('decimal');
     decimal.addEventListener('click', function(){ 
-        if (inputState == true && decimal1 == true) {
+        if (inputState == true && checker1 == true) {
             document.getElementById('left_operand').value += this.getAttribute("data-number");
-            decimal1 = false;
-        } else if (inputState == false && decimal2 == true) {
+            checker1 = false;
+        } else if (inputState == false && checker2 == true) {
             document.getElementById('right_operand').value += this.getAttribute("data-number");
-            decimal2 = false;
+            checker2 = false;
         }
         
     });
@@ -50,8 +50,8 @@
     percentNum.addEventListener('click', function(){
         var percent; 
         if (inputState == true) {
-            percent = parseFloat(document.getElementById('left_operand').value) * .001;
-            document.getElementById('left_operand').value = percent;
+            percent = parseFloat(document.getElementById('left_operand').value) / 100;
+            document.getElementById('left_operand').value = percent.toFixed(2);
         }
         
     });
@@ -76,24 +76,27 @@
         firstOperand = document.getElementById('left_operand').value;
         secondOperand = document.getElementById('right_operand').value;
         operator = document.getElementById('operator').value;
+        console.log(operator);        
         switch (operator){
-            case "+":
-                output = firstOperand + secondOperand;
-                break;
             case "-":
-                output = firstOperand - secondOperand;
+                output = parseFloat(firstOperand) - parseFloat(secondOperand);
+                break;
+            case "+":
+                output = parseFloat(firstOperand) + parseFloat(secondOperand);
                 break;
             case "*":
-                output = firstOperand * secondOperand;
+                output = parseFloat(firstOperand) * parseFloat(secondOperand);
                 break;
             case "/":
-                output = firstOperand / secondOperand;
+                output = parseFloat(firstOperand) / parseFloat(secondOperand);
                 break;
         }
-        inputState == true; 
+        inputState = true; 
+        checker1 = true; 
+        checker2 = true; 
         document.getElementById('operator').value = '';
         document.getElementById('right_operand').value = '';
-        document.getElementById('left_operand').value = output.toFixed(3);
+        document.getElementById('left_operand').value = parseFloat(output.toFixed(2));
 
     });
 
@@ -104,7 +107,19 @@
         document.getElementById('operator').value = '';
         document.getElementById('right_operand').value = '';
         document.getElementById('left_operand').value = '';
-    })
+    });
+
+    //Add total to Scratch pad
+    var scratch = document.getElementById('scr_btn');
+    scratch.addEventListener('click', function(){
+            document.getElementById('scratch_area').value += document.getElementById('left_operand').value;
+    });
+
+    //Clear scratch pad
+    var clear_scr = document.getElementById('clear_scr');
+    clear_scr.addEventListener('click', function(){
+        document.getElementById('scratch_area').value = '';
+    });
 
 
 })();
