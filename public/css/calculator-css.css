@@ -1,3 +1,7 @@
+.background{
+    background-image: url(/img/graph_paper.jpg);
+    background-position: fixed; 
+}
 .spacer {
     height: 40px; 
 }
@@ -61,6 +65,33 @@
 .box {
     width: 380px;
     padding-bottom: 30px; 
-    border: 1px solid black;
+    border-style: outset;
+    border-width: 6px;
+    border-color: pink; 
     background-color: #400D31;
+    border-radius: 5px; 
 }
+
+.scratch{
+    margin-top: 20px; 
+    font-color: black;
+}
+.scratch_area {
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 400px;
+    width: 300px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.5em; 
+    letter-spacing: 1.5px;
+    color: black;
+
+}
+.scr_btn {
+    background-color: navy; 
+    color: white;
+    font-size: 1.3em; 
+    font-family: 'Ubuntu', sans-serif;
+    margin-right: 5px; 
+}
+
