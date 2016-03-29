@@ -66,7 +66,7 @@
         })
     }
 
-
+    //Equal button.  Also clears operand and right operand. 
     var equals = document.getElementById('equals');
     equals.addEventListener("click", function(){
         var firstOperand;
