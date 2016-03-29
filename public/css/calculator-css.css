@@ -67,7 +67,7 @@
     padding-bottom: 30px; 
     border-style: outset;
     border-width: 6px;
-    border-color: pink; 
+    border-color: #7F4F7F; 
     background-color: #400D31;
     border-radius: 5px; 
 }
@@ -88,10 +88,14 @@
 
 }
 .scr_btn {
-    background-color: navy; 
+    background-color: #022B40;
+    width: 140px; 
     color: white;
     font-size: 1.3em; 
     font-family: 'Ubuntu', sans-serif;
-    margin-right: 5px; 
+    margin-left: 5px;
 }
 
+.clear {
+    margin-left: 12px; 
+}
