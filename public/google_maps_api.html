@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Maps API</title>
+<style type="text/css">
+		#map-canvas {
+			width: 770px;
+			height: 481px;
+			margin-left: auto;
+    		margin-right: auto
+		}
+		.header{
+			text-align: center;
+			color: white;
+			font-family: 'Arimo', sans-serif;
+		}
+		.background{
+			background-image: url(/img/food.png);
+		}
+</style>
+	<link href='https://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body class="background">
+<div>
+<h1 class="header">Favorite Restaurants in San Antonio</h1>
+<div id="map-canvas"></div>
+</div>
+	<!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWs1sfMFNDNq25WBVzAKE0T3ARtpG0RA4"></script>
+
+	<!-- Script to show address on map -->
+<script type="text/javascript">
+(function() {
+	"use strict";
+
+	var styles = [
+	  {
+	    "featureType": "landscape",
+	    "stylers": [
+	      { "visibility": "on" },
+	      { "color": "#BDE0FF" },
+	      { "lightness": 50 },
+	      { "gamma": 1.11 }
+	    ]
+	  }
+	];
+
+	var restaurants = [
+        {   
+            "name": "Wildfish",
+            "location":"1834 North Loop 1604 W, San Antonio, TX 78248",
+            "contentString":"<h1>Wildfish</h1><p>Wildfish is known for their great seafood, excellent selection of wine, and an upscale atmosphere.  They are also known for their Happy Hours as well.  If you visit, try the lemon sole! </p>",
+            "image":"img/fish.png"
+        },
+        {
+        	"name": "Bohanan's",
+        	"location": "219 E Houston St, San Antonio, TX 78205",
+        	"contentString":"<h1>Bohanan's</h1><p>By far Bohanan's is my favorite place to celebrate a special occasion.  They have superb service and delicious steaks.  They were one of the top rated steak restaurants in the State of Texas.  On the weekends, they have live jazz in the bar and <em>fantastic</em> cocktails.  My personal favorite is the Ivy Gimlet. </p>",
+        	"image": "img/steak.png"
+        },
+        {
+        	"name": "Frank",
+        	"location": "1150 S. Alamo Street, San Antonio, TX 78201",
+        	"contentString":"<h1>Frank</h1><p>Frank is restaurant that started out in neighboring Austin and just opened a location in San Antonio in a converted church in Southtown.  They have gourmet hot dogs and make their own sausage.  Any of the hot dogs are delicious but my favorite is the reuben waffle fries.  Also for dessert, you can get a chocolate chip and bacon cookie! </p>",
+        	"image": "img/hot-dog.png"
+        },
+        {
+        	"name": "El Mirasol",
+        	"location": "13489 Blanco Rd, San Antonio, TX 78216",
+        	"contentString":"<h1>El Mirasol</h1><p>El Mirasol is one of my go-to places for Mexican and Tex-Mex food in San Antonio.  It's a low key place located in a small strip center in the Northside. They have a great patio and drinks.  My favorite dishes are the mole enchiladas and the tacos al pastor. </p>",
+        	"image": "img/taco.png"
+        },
+        {
+        	"name": "Sushi Zushi",
+        	"location": "9867 West Interstate 10, San Antonio, TX 78230",
+        	"contentString":"<h1>Sushi Zushi</h1><p>A great place for sushi that's also very popular with several locations in the city.  They have a wide variety of rolls and sashimi. They even deliver!</p>",
+        	"image": "img/sushi.png"
+        }
+
+    
+    ];
+
+    // Create a new StyledMapType object, passing it the array of styles,
+  	// as well as the name to be displayed on the map type control.
+    var styledMap = new google.maps.StyledMapType(styles,
+    {name: "Styled Map"});
+
+	// Set our map options
+	var mapOptions = {
+		// Set the zoom level
+		zoom: 10,
+
+		// This sets the center of the map at our location
+		center: {
+			lat:  29.426791,
+			lng: -98.489602
+		},
+		mapTypeControlOptions: {
+      		mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+    	}
+	};
+
+	// Render the map
+	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+	//Associate the styled map with the MapTypeId and set it to display.
+	map.mapTypes.set('map_style', styledMap);
+	map.setMapTypeId('map_style');
+	
+
+	restaurants.forEach(function (restaurants, index){
+
+		// Set our address to geocode
+		var address = restaurants.location;
+
+		// Init geocoder object
+		var geocoder = new google.maps.Geocoder();
+
+		// Geocode our address
+		geocoder.geocode({ "address": address }, function(results, status) {
+
+		   // Check for a successful result
+		   if (status == google.maps.GeocoderStatus.OK) {
+		   		// map.setCenter(results[0].geometry.location);
+			   	//latitude
+			   	// console.log (results[0].geometry.location.lat());
+			   	//longitude
+			   	// console.log (results[0].geometry.location.lng());
+			   	var image = restaurants.image;
+			   	var marker = new google.maps.Marker({
+				    map: map,
+				    animation: google.maps.Animation.DROP,
+			        position: results[0].geometry.location,
+			        icon: image
+
+				});
+				marker.addListener('click', function() {
+				 	// Create a new infoWindow object with content
+					var infowindow = new google.maps.InfoWindow({
+					content: restaurants.contentString,
+					maxWidth: 200
+					});
+		    		infowindow.open(map, marker);
+		  		});
+
+		   } else {
+
+			   // Show an error message with the status if our request fails
+			   alert("Geocoding was not successful - STATUS: " + status);
+		   }
+
+
+		});
+
+    }); // end loop here 
+	
+	
+})();
+</script>
+
+
+</body>
+</html>
