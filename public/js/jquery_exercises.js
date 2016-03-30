@@ -1,15 +1,25 @@
 $(document).ready(function() {
- 
-    $('li').css({
-        'font-size': '20px',
-        'background-color': 'yellow'
-    });
-    $('p, h1, li').css('background-color','yellow');
+    var elements = $('h1');
 
-    var contents = $('h1').html();
-    alert(contents);
- 
+    elements.click(function(){
+        elements.css('background-color', 'teal');
+    })
 
+    var paragraphs = $('p');
+    paragraphs.dblclick(function(){
+        paragraphs.css('font-size', '18px');
+    })
+
+    var bullets = $('li');
+    bullets.hover(
+        function(){
+            bullets.css('color','red');
+        },
+        function(){
+            bullets.css('color', 'white');
+        }
+
+    );
 
 });
 
