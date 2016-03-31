@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+    <h1>Konami Code</h1>
+    <script type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        "use strict";
+
+        var konami = "38,38,40,40,37,39,37,39,66,65,13";
+
+        var pressed = [];
+
+        var keyTostring;
+
+        var key; 
+
+        $(document).keyup(function(event){
+
+                key = event.keyCode;
+                pressed.push(key);
+                keyTostring = pressed.toString();
+                console.log(keyTostring);
+                var n = konami.localeCompare(keyTostring);
+                if (n == 0){
+                    // alert('You did it!');
+                    window.open("https://youtu.be/KLQS6xo40kI");
+                }
+
+        });
+
+
+
+    </script>
+</body>
+</html>
