@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example jQuery Page</title>
+    <style>
+        .invisible {
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        "use strict";
+
+        $(document).ready(function() {
+
+        $('#show_answers').click(function(event) {
+                event.preventDefault();
+                $('dd').toggleClass('invisible');
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h1 id="heading">National Parks FAQs</h1>
+    <a href="#" id="show_answers" >How well do you know the National Park Service?</a>
+
+    <dl>
+        <dt class="bold" class="bold">Who is the director of the National Park Service?</dt>
+        <dd class="invisible">Jonathan B. Jarvis</dd>
+        <dt class="bold">What government agency oversees the National Park Service?</dt>
+        <dd class="invisible">The National Park Service is a bureau of the Department of the Interior. Directly overseeing its operation is the Department's Assistant Secretary for Fish, Wildlife and Parks.</dd>
+        <dt class="bold">How old is the National Park System?</dt>
+        <dd class="invisible">The National Park Service was created by an act signed by President Woodrow Wilson on August 25, 1916. Yellowstone National Park was established by an Act signed by President Ulysses S. Grant on March 1, 1872, as the nation's first national park. </dd>
+        <dt class="bold">What is the origin of the National Park Service arrowhead?</dt>
+        <dd class="invisible">The arrowhead was authorized as the official National Park Service emblem by the Secretary of the Interior on July 20, 1951. The components of the arrowhead may have been inspired by key attributes of the National Park System, with the sequoia tree and bison representing vegetation and wildlife, the mountains and water representing scenic and recreational values, and the arrowhead itself representing historical and archeological values. </dd>
+        <dt class="bold">How many people visit the national parks?</dt>
+        <dd class="invisible">Total recreation visitors to the national parks in 2015: 307,247,252</dd>
+        <dt class="bold">What is the most-visited national park?</dt>
+        <dd class="invisible">Blue Ridge Parkway 15,054,603 visitors</dd>
+        <dt class="bold">How do I obtain a park pass?</dt>
+        <dd class="invisible">You can obtain park passes by visiting your nearest park site. Most sites have passes available; we recommend calling a park prior to your visit. Learn more about the America the Beautiful - National Parks and Federal Recreation Lands Pass.</dd>
+        <dt class="bold">How do I make reservations for camping/lodging in national parks?</dt>
+        <dd class="invisible">For campground reservations, visit Recreation.gov. Not all parks participate in this service; many campgrounds are first come, first served. For more information on specific camping and lodging services offered at the park(s) of your interest, please check the specific park websites.</dd>
+        <dt class="bold">What do I need to know about driving off road in national parks?</dt>
+        <dd class="invisible">Before you head out, check with the national parks that you intend to visit. In many national parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.</dd>
+        <dt class="bold">What are concessions?</dt>
+        <dd class="invisible">Concessionaires provide park visitors with lodging, transportation, food services, shops, and other services. More than 500 NPS concession contracts in more than 120 different park units) vary in size from small, family-owned businesses to national/international corporations. Learn more about commercial services in the National Park Service.</dd>
+    </dl>    
+
+</body>
+</html>
