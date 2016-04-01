@@ -17,7 +17,7 @@
 
         $('#show_answers').click(function(event) {
                 event.preventDefault();
-                $('dd').toggle();
+                $('dd').fadeToggle();
         });
 
         
@@ -28,8 +28,13 @@
             $(element).children().first().css('font-weight','bold');
         });
 
-        $('li').click(function(event){
-            $(this).parent().hide();
+        // $('li').click(function(event){
+        //     $(this).parent().hide();
+        // });
+
+        $('h3').click(function(event){
+            $(this).next('ul').fadeToggle();
+            console.log(this);
         });
 
         // var parks = $('#grand-canyon').slideUp();
