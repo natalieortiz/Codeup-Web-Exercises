@@ -18,7 +18,20 @@
         $('#show_answers').click(function(event) {
                 event.preventDefault();
                 $('dd').toggleClass('invisible');
-            });
+        });
+
+        
+        // $('li:first-child').css('font-weight','bold');
+
+
+        $('ul').each(function(index,element){
+            $(element).children().first().css('font-weight','bold');
+        });
+
+        $('li').click(function(event){
+            $(this).parent().addClass('invisible');
+        });
+
 
         });
     </script>
@@ -48,7 +61,32 @@
         <dd class="invisible">Before you head out, check with the national parks that you intend to visit. In many national parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.</dd>
         <dt class="bold">What are concessions?</dt>
         <dd class="invisible">Concessionaires provide park visitors with lodging, transportation, food services, shops, and other services. More than 500 NPS concession contracts in more than 120 different park units) vary in size from small, family-owned businesses to national/international corporations. Learn more about commercial services in the National Park Service.</dd>
-    </dl>    
+    </dl>
+        <h3>Yosemite</h3>
+        <ul id="yosemite" class="parks">
+        <li>Yosemite was not America’s first national park.</li>
+        <li>A Scottish immigrant spearheaded Yosemite National Park’s creation.</li>
+        <li>Sheep were once among the primary threats to Yosemite’s natural landscape.</li>
+        <li>A presidential camping trip led to Yosemite National Park’s expansion.</li>
+    </ul>
+
+    <h3>Rocky Mountain National Park</h3>
+    <ul id="rocky-mountain" class="parks">
+        <li>Trail Ridge Road (which connects Grand Lake and Estes Park) opened in July 1932.</li>
+        <li>Approximately 11 miles of the drive along Trail Ridge Road are above timberline.</li>
+        <li>Because Trail Ridge Road climbs to an elevation of 12,183 feet, it’s one of the most spectacular places in the world to star gaze. </li>
+        <li>Some 282 species of birds have been reported to inhabit or visit the area since the designation of Rocky Mountain National Park in 1915.</li>
+        <li>Roughly 355 miles of trails are maintained for hiking within Rocky Mountain National Park.</li>
+    </ul> 
+
+    <h3>Grand Canyon National Park</h3>
+    <ul id="grand-canyon" class="parks">
+        <li>Mules are chosen from Tennessee and Missouri. They are used for pack supplies to Phantom Ranch and pack mail out of the canyon and later promoted to trail mules.</li>
+        <li>The condors were reintroduced to the Grand Canyon in 1996.</li>
+        <li>The first automobile to reach the Grand Canyon’s South Rim was in 1902. It took 5 days from Flagstaff.</li>
+        <li>Grand Canyon is one the “Seven Natural Wonders of the World.”</li>
+        <li>The deepest point of the canyon is just over a mile deep.</li>
+    </ul>  
 
 </body>
 </html>
