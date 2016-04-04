@@ -17,7 +17,7 @@
 
         $('#show_answers').click(function(event) {
                 event.preventDefault();
-                $('dd').fadeToggle();
+                $('dd').slideToggle();
         });
 
         
@@ -33,14 +33,22 @@
         // });
 
         $('h3').click(function(event){
-            $(this).next('ul').fadeToggle();
-            console.log(this);
+            $(this).next('ul').slideToggle();
         });
 
-        // var parks = $('#grand-canyon').slideUp();
-        // $('.bold').click(function(){
-        //     parks.slideToggle();
-        // })
+        //adds 10 pixels.
+        var parks = $('#grand-canyon').slideUp();
+        $('.bold').click(function(){
+            parks.animate({
+                'font-size':'+=10px',
+            }, 3000).animate({
+                'top':'+=20px'
+            }, 2000);
+        });
+
+
+
+
 
         });
     </script>
