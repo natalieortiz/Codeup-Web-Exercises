@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Blog</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<style type="text/css">
+	.post {
+		margin-left: 20px;
+		margin-right: 20px;
+		padding-bottom: 40px; 
+	}
+	.header{
+		text-align: center;
+		margin-bottom: 50px;
+	}
+	</style>
+</head>
+<body>
+
+<h1 class="header">My Ajax Blog</h1>
+<div class="post" id="posts"></div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+(function() {
+
+    $.ajax("/data/blog.json").done(function (data) {
+        var post = $('#posts');
+        data.forEach(function (element,index) {
+            console.log(element);
+            var entry = "";
+            entry += "<h3>Title: " + element.title +"</h3>";
+            entry += "<h4>Date: " + element.date + "</h4>";
+            entry += "<p>" + element.content + "</p>";
+            entry += "<b>Categories: </b><em>" + element.categories.join(', ') + "</em>";	
+			post.append(entry);
+
+        })
+
+    });
+
+})();
+</script>
+</body>
+</html>
