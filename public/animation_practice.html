@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lucky Charms!</title>
+
+<style type="text/css">
+	.background{
+		background-image: url("img/field_background.png");
+		position: fixed;
+		background-repeat: no-repeat;
+		background-size: auto, 725px; 
+	}
+
+	#leprechaun{
+		position: absolute;
+		height: 250px;
+		bottom: 0;
+		left: 0;
+		opacity: 0;
+	}
+
+	#potofgold {
+		position: absolute;
+		height: 250px;
+		bottom: 0;
+		right: 0;
+		opacity: 0;
+	}
+
+</style>
+
+</head>
+<body class="background">
+<button id="play">My Pot of Gold!</button>
+<div>
+	<img src="/img/leprechaun.png" id="leprechaun">
+	<img src="/img/pot_of_gold.png" id="potofgold">
+</div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		
+		var $leprechaun = $('#leprechaun');
+		var $potofgold = $('#potofgold');
+
+		$('#play').click(function(event) {
+            $leprechaun.animate({
+            	opacity: 1
+            },1000).animate({
+				'left':'100px',
+			},1000);
+		        
+            $potofgold.animate({
+                opacity: 1
+            },1000);
+
+        });
+	
+	});
+
+
+
+
+	
+</script>
+</body>
+</html>
