@@ -67,9 +67,9 @@
 			<form>
 				<div class="form-group lat_long">
 					<label for="latitude" >Latitude</label>
-					<input type="text" id="latitude" class="form-control">
+					<input type="text" id="lat_box" class="form-control" readonly="">
 					<label for="longitude">Longitude</label>
-					<input type="text" id="longitude" class="form-control">
+					<input type="text" id="long_box" class="form-control" readonly="">
 					<button id="coordinates" type="button" class="btn btn-default">Submit</button>
 				</div>
 			<form>
@@ -85,16 +85,15 @@
 (function(){
 	"use strict";
 
+	//get map
+	var myLatlng = new google.maps.LatLng(29.426791,-98.489602);
 	// Set our map options
 	var mapOptions = {
 		// Set the zoom level
-		zoom: 10,
+		zoom: 4,
 
 		// This sets the center of the map at our location
-		center: {
-			lat:  29.426791,
-			lng: -98.489602
-		},
+		center: myLatlng,
 		mapTypeControlOptions: {
       		mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
     	}
@@ -103,6 +102,26 @@
 	// Render the map
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	
+	var marker = new google.maps.Marker({
+    position: myLatlng,
+    draggable:true,
+    map: map,
+    title:"Drag me!"
+	});
+
+	marker.setMap(map);
+
+	google.maps.event.addListener(marker, 'dragend', function(evt){
+    		latitude = evt.latLng.lat();
+    		longitude = evt.latLng.lng();
+    		console.log(latitude);
+    		console.log(longitude);	
+    		document.getElementById('lat_box').value = latitude;
+    		document.getElementById('long_box').value = longitude;
+
+	});
+
+	// Now to get weather!
 	var latitude;
 	var longitude;
 
@@ -141,9 +160,9 @@
     
 	var coordinates = document.getElementById('coordinates');
     coordinates.addEventListener('click', function(){ 
-        latitude = document.getElementById('latitude').value;
+        latitude = document.getElementById('lat_box').value;
         console.log(latitude);
-        longitude = document.getElementById('longitude').value;
+        longitude = document.getElementById('long_box').value;
         console.log(longitude);
         var weather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 	    APPID: "f97ab9e536a6a913b3a0d48dc0540193",
