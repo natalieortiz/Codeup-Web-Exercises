@@ -1,0 +1,79 @@
+.blank{
+    background: white;
+    margin-top: -15px;
+    padding-top: 15px; 
+}
+.body{
+    background-image: url("/img/weather.png");
+}
+.bold{
+	font-weight: bold;
+}
+.button {
+    margin-left: 30px; 
+    margin-top: 20px;
+}
+.city_name {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 18px; 
+    margin-left: 50px;
+    font-size: 2em;
+}
+.day {
+    float: left; 
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    text-align: center;
+    border: solid 1px darkgrey;
+    width: 200px;
+    background: #dadbdc;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    font-size: 1.3em;
+}
+#forecast {
+    margin-left: 10px;
+}
+.header{
+    padding-top: 20px;
+    padding-left: 50px; 
+    padding-bottom: 10px;
+    font-family: 'Crete Round', serif;
+    font-size: 48px; 
+    background: rgb(0,32,123);
+    color: white;
+    margin-bottom: 15px;
+}
+.header img{
+    margin-left: 20px;
+}
+
+.header_text {
+    float: left;
+    margin-top: 25px;
+    margin-left: 40px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+.lat_long{
+	float: left;
+	margin-left: 10px;
+	height: 300px;
+	width: 300px;
+	position: relative;
+	background: #dadbdc;
+	padding: 10px;
+}
+#map-canvas {
+    float: left;
+    width: 770px;
+    height: 481px;
+    margin-left: 40px;
+    margin-right: auto;
+    margin-bottom: 30px;
+
+}
