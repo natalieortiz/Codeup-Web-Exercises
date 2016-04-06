@@ -14,10 +14,16 @@
     .format {
         margin-left: 15px;
     }
+    .refresh{
+        margin-left: 15px;
+        background-color: #79C753;
+        font-weight: bold;
+    }
+
     </style>
 </head>
 <body>
-
+<div class="container-fluid">
 <h1 class="format">My Tool Store</h1>
 
 <table class="table_format table table-striped table-bordered"id="products">
@@ -31,31 +37,35 @@
     </thead>
     <tbody id="insertProducts"></tbody>
 </table>
-
+<button id="refresh" type="button" class="btn btn-default refresh">Refresh Inventory</button>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <script>
 (function() {
 
+
     $.ajax("/data/inventory.json").done(function (data) {
-        var tbody = $('#insertProducts');
-        data.forEach(function (element,index) {
-            console.log(element);
-            var content = "";
-            content += "<tr>";
-            content +=     "<td>" + element.title + "</td>";
-            content +=     "<td>" + element.quantity + "</td>";
-            content +=     "<td>" + element.price + "</td>";
-            content +=     "<td>" + element.categories.join(', ') + "</td>";
-            content += "</tr>";
-            tbody.append(content);
+         var tbody = $('#insertProducts');
+         data.forEach(function (element,index) {
+             console.log(element);
+             var content = "";
+             content += "<tr>";
+             content +=     "<td>" + element.title + "</td>";
+             content +=     "<td>" + element.quantity + "</td>";
+             content +=     "<td>" + element.price + "</td>";
+             content +=     "<td>" + element.categories.join(', ') + "</td>";
+             content += "</tr>";
+             tbody.append(content);
+ 
+         })
+ 
+     });
 
-        })
 
-    });
-
-    
-
+    $("#refresh").click(function() {
+           location.reload(true);
+       });
 
 
     // TODO: Take the data from inventory.json and append it to the products table
