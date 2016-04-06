@@ -3,80 +3,35 @@
 <head>
 	<title>Weather Map</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<style type="text/css">
-        .header{
-        	padding-top: 10px;
-        	padding-bottom: 10px;
-        	font-size: 2em; 
-        	font-weight: bold;
-        }
-        #map-canvas {
-        	float: left;
-			width: 770px;
-			height: 481px;
-			margin-left: auto;
-    		margin-right: auto
-        }
-        #forecast {
-        	margin-left: 10px;
-        }
-        .city_name {
-        	padding-top: 20px;
-        	padding-bottom: 5px;
-        	font-weight: bold;
-        	font-size: 18px; 
-        	margin-left: 10px;
-        	font-size: 2em;
-        }
-        .day {
-        	float: left; 
-        	padding-left: 20px;
-        	padding-right: 20px;
-        	padding-top: 20px;
-        	text-align: center;
-        	border: solid 1px darkgrey;
-        	width: 200px;
-        	background: #dadbdc;
-        	margin-bottom: 10px;
-        }
-        .day p {
-
-        }
-        .bold{
-			font-weight: bold;
-			font-size: 1.3em;
-		}
-		.lat_long{
-			float: left;
-			margin-left: 10px;
-			height: 300px;
-			width: 300px;
-			position: relative;
-			background: #dadbdc;
-			padding: 10px;
-		}
-
-    </style>
+    <link rel="stylesheet" href="/css/weather_map.css">
+    <link href='https://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body class="body">
 <div class="container-fluid">
 	<div class="row">
-		<div class="header col-md-12">Google Weather Maps</div>
+			<div class="header col-md-12">Weather Forecast Anywhere<img src="/img/rainbow.png"></div>
 	</div>
-			<div id="map-canvas"></div>
-			<form>
-				<div class="form-group lat_long">
-					<label for="latitude" >Latitude</label>
-					<input type="text" id="lat_box" class="form-control" readonly="">
-					<label for="longitude">Longitude</label>
-					<input type="text" id="long_box" class="form-control" readonly="">
-					<button id="coordinates" type="button" class="btn btn-default">Submit</button>
+	<div class="row">
+	<div class="col-md-10 col-md-offset-1 blank">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div id="city_name" class="city_name"></div>
+					<div id="forecast"></div>
+				</div>	
+			</div>
+			<div class="row">	
+				<div class="col-md-10 col-md-offset-1">
+					<p class="header_text bold">Drag the marker to a location to find the weather.</p>
+					<button id="coordinates" type="button" class="btn-info button btn btn-default">What's the Weather?</button>
 				</div>
-			<form>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+				<div id="map-canvas"></div>
+				</div>
+			</div>
 	</div>
-	<div id="city_name" class="city_name"></div>
-	<div id="forecast"></div>
-	
+	</div>
 </div>
 <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWs1sfMFNDNq25WBVzAKE0T3ARtpG0RA4"></script>
@@ -90,7 +45,7 @@
 	// Set our map options
 	var mapOptions = {
 		// Set the zoom level
-		zoom: 4,
+		zoom: 5,
 
 		// This sets the center of the map at our location
 		center: myLatlng,
@@ -111,58 +66,23 @@
 
 	marker.setMap(map);
 
-	google.maps.event.addListener(marker, 'dragend', function(evt){
-    		latitude = evt.latLng.lat();
-    		longitude = evt.latLng.lng();
-    		console.log(latitude);
-    		console.log(longitude);	
-    		document.getElementById('lat_box').value = latitude;
-    		document.getElementById('long_box').value = longitude;
-
-	});
-
-	// Now to get weather!
 	var latitude;
 	var longitude;
 
-	var weather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-    APPID: "f97ab9e536a6a913b3a0d48dc0540193",
-    lat: 29.426791,
-    lon: -98.489602,
-    units: "imperial",
-    cnt: 3
+	google.maps.event.addListener(marker, 'dragend', function(evt){
+    		latitude = evt.latLng.lat();
+    		longitude = evt.latLng.lng();
+    		map.setZoom(8);
+			map.panTo(marker.position);
+
 	});
-
-
-		weather.done (function(data){
-			console.log(data);
-			var box = $('#forecast');
-			var name_box = $('#city_name');
-			var name = data.city.name;
-			name_box.append(name);
-			var content = "";
-			var day = data.list;
-
-
-			day.forEach(function(day,index){
-				var content = "";
-				content += "<div class='day'><span class='bold'><p>" + day.temp.min + " / " +  day.temp.max + "</p></span>";
-				content += "<p><img src='http://openweathermap.org/img/w/"+ day.weather[0].icon +  ".png'></p>";
-				content += "<p class='data'>Humidity: " + day.humidity + "%</p>";
-				content += "<p class='data'>Wind: " + day.speed + "</p>";
-				content += "<p class='data'>Pressure: " + day.pressure + "</p></div>"
-				box.append(content);
-
-			})
-
-		});
 
     
 	var coordinates = document.getElementById('coordinates');
     coordinates.addEventListener('click', function(){ 
-        latitude = document.getElementById('lat_box').value;
+        // latitude = document.getElementById('lat_box').value;
         console.log(latitude);
-        longitude = document.getElementById('long_box').value;
+        // longitude = document.getElementById('long_box').value;
         console.log(longitude);
         var weather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 	    APPID: "f97ab9e536a6a913b3a0d48dc0540193",
@@ -183,11 +103,11 @@
 
 			day.forEach(function(day,index){
 				// var content = "";
-				content += "<div class='day'><span class='bold'><p>" + day.temp.min + " / " +  day.temp.max + "</p></span>";
+				content += "<div class='day'><span class='bold'><p>" + day.temp.min.toFixed(0) + "°F / " +  day.temp.max.toFixed(0) + "°F</p></span>";
 				content += "<p><img src='http://openweathermap.org/img/w/"+ day.weather[0].icon +  ".png'></p>";
-				content += "<p class='data'>Humidity: " + day.humidity + "%</p>";
-				content += "<p class='data'>Wind: " + day.speed + "</p>";
-				content += "<p class='data'>Pressure: " + day.pressure + "</p></div>"
+				content += "<p><span class='bold'>Humidity:</span> " + day.humidity + "%</p>";
+				content += "<p><span class='bold'>Wind:</span> " + day.speed + "</p>";
+				content += "<p><span class='bold'>Pressure:</span> " + day.pressure + "</p></div>"
 
 			})
 				box.html(content);
@@ -196,6 +116,29 @@
 
 
     });
+
+ //    // Init geocoder object
+	// var geocoder = new google.maps.Geocoder();
+
+	// // Geocode our address
+	// geocoder.geocode({ "address": address }, function(results, status) {
+
+	// // Check for a successful result
+	// if (status == google.maps.GeocoderStatus.OK) {
+	//    	var image = restaurants.image;
+	//    	var marker = new google.maps.Marker({
+	// 	    map: map,
+	// 	    animation: google.maps.Animation.DROP,
+	//         position: results[0].geometry.location,
+
+	// 	});
+
+
+	// } else {
+
+	//    // Show an error message with the status if our request fails
+	//    alert("Geocoding was not successful - STATUS: " + status);
+	// }
 
 
 	
