@@ -4,23 +4,88 @@
 	<title>Ajax Blog</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,600italic,600,400italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Jacques+Francois+Shadow|Pacifico' rel='stylesheet' type='text/css'>
 
 	<style type="text/css">
 	.post {
-		margin-left: 20px;
-		margin-right: 20px;
 		padding-bottom: 40px; 
 	}
 	.header{
-		text-align: center;
-		margin-bottom: 50px;
+		margin-bottom: 20px;
+		font-weight: bold;
+		font-size: 72px;
+		margin-left: 50px;
+		font-family: 'Pacifico', cursive;	
+		color: rgb(19,122,147);
 	}
+	.entry{
+		border: solid 1px lightgrey;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+		background: white;
+		margin-left: 50px;
+	}
+	.bold{
+		font-weight: bold;
+	}
+	.italics{
+		font-style: italic;
+	}
+	.top{
+		/*background-image: url("/img/field_background.png");*/
+		/*background: rgb(86,71,135);*/
+		padding-top: 50px;
+		background-size: 60%;
+		margin-bottom: 40px;
+	}
+	.body{
+		font-family: 'Raleway', sans-serif;
+		background-image: url("/img/tree_bark.png");
+	}
+	.bio {
+		border: solid 1px lightgrey;
+		height: 600px;
+		width: 350px;
+		background: rgb(124,211,187);
+	}
+	.headshot {
+		width: 100%;
+	}
+	.about_text{
+		padding: 20px;
+	}
+	.about_heading{
+		font-family: 'Love Ya Like A Sister', cursive;
+		padding-left: 20px;
+		color: rgb(86,71,135);
+	}
+
 	</style>
 </head>
-<body>
+<body class="body">
+	<div class="top">
+		<div class="header"><p>My Ajax Blog</p></div>
+	</div>
 
-<h1 class="header">My Ajax Blog</h1>
-<div class="post" id="posts"></div>
+<div class="container-fluid">
+<div class="wrapper">
+	<div class="row">
+		<div class="post col-md-8" id="posts"></div>
+		<div class="col-md-3">
+			<div class="bio">
+				<img class="headshot" src="/img/unicorn.jpg">
+				<h1 class="about_heading">About Me</h1>
+				<p class="about_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 (function() {
@@ -30,10 +95,10 @@
         data.forEach(function (element,index) {
             console.log(element);
             var entry = "";
-            entry += "<h3>Title: " + element.title +"</h3>";
-            entry += "<h4>Date: " + element.date + "</h4>";
+            entry += "<div class='entry'><h3>" + element.title +"</h3>";
+            entry += "<h4>" + element.date + "</h4>";
             entry += "<p>" + element.content + "</p>";
-            entry += "<b>Categories: </b><em>" + element.categories.join(', ') + "</em>";	
+            entry += "<span class='bold'>Categories: </span><span class='italics'>" + element.categories.join(', ') + "</span></div>";	
 			post.append(entry);
 
         })
