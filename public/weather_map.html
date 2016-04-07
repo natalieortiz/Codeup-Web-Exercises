@@ -13,24 +13,32 @@
 	</div>
 	<div class="row">
 	<div class="col-md-10 col-md-offset-1 blank">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div id="city_name" class="city_name"></div>
-					<div id="forecast"></div>
-				</div>	
-			</div>
-			<div class="row">	
-				<div class="col-md-10 col-md-offset-1">
-					<p class="header_text bold">Drag the marker to a location to find the weather.</p>
-					<button id="coordinates" type="button" class="btn-info button btn btn-default">What's the Weather?</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="city_name" class="city_name"></div>
+				<div id="forecast"></div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-md-12">
 				<div id="map-canvas"></div>
+				<div class="lat_long">
+				<form class="form-inline" id="search_form">
+					<p class="header_text bold">Drag the marker to a location to find the weather.</p>
+					<div class="form-group search_class">
+						<label for="location" class="header_text bold">Or Search for a Location:</label>
+					    <input type="text" class="text_box" placeholder="Enter Location" id="location">
+					    <button type="submit" class="btn btn-default btn-success" id="search">Find Location</button>
+					</div>
+				</form>
 				</div>
 			</div>
+		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-12 footer">
+			<p>Created by Natalie Ortiz</p>
+		</div>
 	</div>
 </div>
 <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
@@ -57,33 +65,23 @@
 	// Render the map
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	
+	//New marker
 	var marker = new google.maps.Marker({
-    position: myLatlng,
-    draggable:true,
-    map: map,
-    title:"Drag me!"
+	    position: myLatlng,
+	    draggable:true,
+	    map: map,
+	    title:"Drag me!"
 	});
 
+	//Set Marker
 	marker.setMap(map);
 
+	//Global variables for latitude and longitude. 
 	var latitude;
 	var longitude;
 
-	google.maps.event.addListener(marker, 'dragend', function(evt){
-    		latitude = evt.latLng.lat();
-    		longitude = evt.latLng.lng();
-    		map.setZoom(8);
-			map.panTo(marker.position);
-
-	});
-
-    
-	var coordinates = document.getElementById('coordinates');
-    coordinates.addEventListener('click', function(){ 
-        // latitude = document.getElementById('lat_box').value;
-        console.log(latitude);
-        // longitude = document.getElementById('long_box').value;
-        console.log(longitude);
+	//function to get the Weather where a marker is located. 
+	function getWeather (){
         var weather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 	    APPID: "f97ab9e536a6a913b3a0d48dc0540193",
 	    lat: latitude,
@@ -91,8 +89,8 @@
 	    units: "imperial",
 	    cnt: 3
 		});
+		//Waiting for weather to load.
 		weather.done (function(data){
-			console.log(data);
 			var box = $('#forecast');
 			var name_box = $('#city_name');
 			var name = data.city.name;
@@ -100,47 +98,58 @@
 			var content = "";
 			var day = data.list;
 
-
-			day.forEach(function(day,index){
-				// var content = "";
+		//Taking weather info to append html.
+		day.forEach(function(day,index){
+				//create html for weather - ID 'box'
 				content += "<div class='day'><span class='bold'><p>" + day.temp.min.toFixed(0) + "°F / " +  day.temp.max.toFixed(0) + "°F</p></span>";
 				content += "<p><img src='http://openweathermap.org/img/w/"+ day.weather[0].icon +  ".png'></p>";
 				content += "<p><span class='bold'>Humidity:</span> " + day.humidity + "%</p>";
 				content += "<p><span class='bold'>Wind:</span> " + day.speed + "</p>";
 				content += "<p><span class='bold'>Pressure:</span> " + day.pressure + "</p></div>"
-
 			})
-				box.html(content);
-
+			//Replace box div with html content. 
+			box.html(content);
 		});
+	} //end of getWeather function. 
+
+	//Recentering map where user drags marker and getting the weather. 
+	google.maps.event.addListener(marker, 'dragend', function(evt){
+    		latitude = evt.latLng.lat();
+    		longitude = evt.latLng.lng();
+    		map.setZoom(8);
+			map.panTo(marker.position);
+			getWeather();
+	});
 
 
-    });
+    //Search form actions.
+    $('#search_form').submit(function(event){
+		event.preventDefault();
+	    // Init geocoder object
+		var geocoder = new google.maps.Geocoder();
 
- //    // Init geocoder object
-	// var geocoder = new google.maps.Geocoder();
+		//Getting user input. 
+		var location = $('#location').val();
 
-	// // Geocode our address
-	// geocoder.geocode({ "address": address }, function(results, status) {
+		// Geocode our address
+		geocoder.geocode({ "address": location }, function(results, status) {
+		// Check for a successful result
+		if (status == google.maps.GeocoderStatus.OK) {
+			latitude = results[0].geometry.location.lat();
+			longitude = results[0].geometry.location.lng();
+		   	
+			marker.setPosition(results[0].geometry.location);
+			map.panTo(marker.position);
 
-	// // Check for a successful result
-	// if (status == google.maps.GeocoderStatus.OK) {
-	//    	var image = restaurants.image;
-	//    	var marker = new google.maps.Marker({
-	// 	    map: map,
-	// 	    animation: google.maps.Animation.DROP,
-	//         position: results[0].geometry.location,
+			getWeather();
 
-	// 	});
+		} else {
 
-
-	// } else {
-
-	//    // Show an error message with the status if our request fails
-	//    alert("Geocoding was not successful - STATUS: " + status);
-	// }
-
-
+		   // Show an error message with the status if our request fails
+		   alert("Geocoding was not successful - STATUS: " + status);
+		}
+		});
+    });//end of search form function. 
 	
 })();
 
