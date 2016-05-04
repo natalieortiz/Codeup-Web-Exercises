@@ -6,9 +6,9 @@
 
 	session_start();
 
-	$username = Input::has('username') ? Input::get('username') : '';
+	$username = Input::get('username');
 
-	$password = Input::has('password') ? Input::get('password') : '';
+	$password = Input::get('password');
 
 	$message = '';
 
@@ -17,10 +17,17 @@
 		header('Location: authorized.php');
 		exit();
 	} 
+
+	// if (!empty('POST'){
+	// 	if (Auth::attempt($username,$password)) {
+	// 		header('Location: authorized.php');
+	// 		exit();	
+	// 	} else if ($username != ''){
+	// 		$message = 'Login Failed';
+	// 	}
+	// }
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-		$username = escape($_POST['username']);
-		$password = escape($_POST['password']);
 		if (Auth::attempt($username,$password)) {
 			header('Location: authorized.php');
 			exit();	
@@ -28,8 +35,6 @@
 			$message = 'Login Failed';
 		}
 	}
-
-
 
 ?>
 
