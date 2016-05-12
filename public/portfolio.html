@@ -3,45 +3,40 @@
 <head>
     <title>Portfolio</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic,600italic,700|Sorts+Mill+Goudy' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/portfolio_css.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-<nav class="navbar navbar-fixed-top navstyle">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-brand navstyle myname">Natalie Ortiz</div>
-    </div>
-
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navstyle">
-        <li><a href="http://www.linkedin.com/in/ndnatalie" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a></li>
-        
-        <li><a href="https://github.com/natalieortiz" title="GitHub" target="_blank"><i class="fa fa-github fa-lg"></i></a></li>
-        <li><a href="#">Link</a></li>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid navstyle">
+        <div class="navbar-header navstyle">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand navstyle" id="myname">Natalie Ortiz</div>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse navstyle">
+          <ul class="nav navbar-nav navstyle">
+            <li id="links"><a href="https://github.com/natalieortiz" title="Github"><i class="fa fa-github fa-lg"></i></a></li>
+            <li id="links"><a href="http://www.linkedin.com/in/ndnatalie" title="LinkedIn"><i class="fa fa-linkedin fa-lg"></i></a></li>
+          </ul>
+        <ul class="nav navbar-nav navbar-right navstyle">
+        <li id="links"><a href="http://natalieortiz.github.io/resume.html">Resume</a></li>
           </ul>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right navstyle">
-        <li><a href="#">Resume</a></li>
-        <li><a href="#">Portfolio</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 <div class="container-fluid">
     <div class="codestyle bg-1 row">
         <div class="col-md-12">
@@ -57,54 +52,41 @@
 
     <div class="projects">
             <div class="row">
-                <div class="col-md-3">
-                    <img src="/img/placeholder.jpg">
-                    <h3>Page</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <div class="col-md-4">
+                    <a href="http://natalieortiz.github.io/calculator.html" title="Calculator">
+                    <img src="/img/calculator.png"></a>
+                    <h3><a href="http://natalieortiz.github.io/calculator.html">Javascript Calculator</a></h3>
+                    <p>Created a javascript calculator similar to the Apple calculator.  Uses logic and math functions to make calculations.  One notable difference is that this calculator performs the modulus function which is useful and common in programming.</p>
                 </div>
 
-                <div class="col-md-3">
-                    <img src="/img/placeholder.jpg">
-                    <h3>Page</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                <div class="col-md-4">
+                    <a href="http://natalieortiz.github.io/weather_map.html" title="Weather Map">
+                    <img src="/img/weathermap.png"></a>
+                    <h3><a href="http://natalieortiz.github.io/weather_map.html">Weather Map Site</a></h3>
+                    <p>By using the Google Maps API and a weather API, we are able to find the 3-day forecast for any location by dragging and dropping the pin on the website.  A search function is also utilizes Google maps to geocode any location entered by the user.  
                     </p>
                  </div>
-                <div class="col-md-3">
-                    <img src="/img/placeholder.jpg">
-                    <h3>Page</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                </div>
-
-               <div class="col-md-3">
-                    <img src="/img/placeholder.jpg">
-                    <h3>Page</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <div class="col-md-4">
+                    <a href="http://natalieortiz.github.io/simplesimon.html" title="Simple Simon">
+                    <img src="/img/simplesimon.png"></a>
+                    <h3><a href="http://natalieortiz.github.io/simplesimon.html">Simple Simon</a></h3>
+                    <p>This game uses javascript to create a copy of the popular Simon game from the 80s.  A random sequence is generated and the user copies that sequence by clicking on the corresponding squares.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <img src="/img/placeholder.jpg">
-                    <h3>Page</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+               <div class="col-md-4">
+                    <a href="http://natalieortiz.github.io/whackaweenie.html" title="Whack-a-Weenie">
+                    <img src="/img/whackaweenie.png"></a>
+                    <h3><a href="http://natalieortiz.github.io/whackaweenie.html">Whack-a-Weenie</a></h3>
+                    <p>A variation on a whack-a-mole style game where the user tries to click on as many "weenies" (dachshunds) to get a high score.  A surprise pops up when a user gets the new high score.</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <img src="/img/placeholder.jpg">
                     <h3>Page</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
-                 </div>
-                <div class="col-md-3">
-                    <img src="/img/placeholder.jpg">
-                    <h3>Page</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <img src="/img/placeholder.jpg">
                     <h3>Page</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -122,9 +104,5 @@
     </div>       
 </div>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </html>
