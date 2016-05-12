@@ -3,23 +3,64 @@ body {
     font-size: 2em;
     color: rgb(16,37,66);
 }
-.navstyle {
-    background-color: rgb(16,37,66);
-    color: white;
+
+.contact {
+    text-align: center;
     font-family: 'Josefin Sans', sans-serif;
 }
-.myname {
-    font-family: 'Sorts Mill Goudy', serif;
-    font-weight: bold;
-    font-size: 1em;
+
+.education {
+    background-color: rgb(16,37,66);
+    color: white;
+    margin-top: 30px;
 }
-.navstyle ul a:link {
+
+.education h1 {
+  font-family: 'Sorts Mill Goudy', serif;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 30px;
+  font-size: 2em;
+  color: rgb(255,223,50);
+}
+
+.edutext{
+    padding-left: 70px;
+    padding-top: 10px;
+    line-height: 225%;
+    font-size: 1em; 
+}
+
+.footer {
+    padding-left: 15px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 1em;
+    background-color: rgb(16,37,66);
+}
+
+.footer h3 {s
+    text-align: left;
+    font-family: 'Sorts Mill Goudy', serif;
+    text-decoration: underline;
+}
+
+#forcedcolor{
+    background-color: rgb(16,37,66)
+}
+
+.headshot img{
+    width: 200px;
+}
+
+#links a:link {
     color: white;
 }
-.navstyle ul a:visited {
+#links a:visited {
     color: rgb(179,163,148);
 }
-.navstyle ul a:hover {
+#links a:hover {
     color: rgb(245,105,86);
 }
 .mainheading{
@@ -28,26 +69,11 @@ body {
   padding-bottom: 15px;
   padding-top: 20px;
 }
-.contact {
-    text-align: center;
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-
-.top {
-    padding-top: 200px;
-    background-image: url(/img/IMG_0485.jpg);
-    text-align: center;
-    color: white; 
-    padding-bottom: 30px;
-
-}
-
-.top img {
-    width: 100%;
-}
-.headshot img{
-    width: 200px;
+#myname {
+    font-family: 'Sorts Mill Goudy', serif;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
 }
 .name {
     font-family: 'Sorts Mill Goudy', serif;
@@ -55,12 +81,20 @@ body {
     color: white;
     font-weight: bolder;
 }
+.navstyle {
+    background-color: rgb(16,37,66);
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.notredame {
+    width: 400px;
+    margin: auto;
+}
 .objective {
     background-color: rgb(140, 206,237); 
     padding-top: 50px;
     padding-bottom: 30px;
 }
-
 
 .objective p {
     padding-top: 25px;
@@ -68,30 +102,40 @@ body {
     padding-right: 50px; 
     padding-bottom: 50px;
 }
-.skills {
-    padding-bottom: 70px; 
-}
-.education {
-    padding-left: 70px;
-    background-color: rgb(16,37,66);
-    color: white;
+
+.skill p {
+    font-family: 'Josefin Sans', sans-serif;   
 }
 
-.edutext{
-    padding-top: 10px;
-    line-height: 225%;
-    font-size: 1em; 
+.skill_box {
+    padding:10px;
+    height: 270px;
+    width: 300px;
+    background-color: rgba(140, 206,237, .5);
+    margin: auto; 
 }
-.education img{
-    width: 400px;
+.skill_list {
+    padding-top: 20px;
+    position: absolute;
 }
-.education h1 {
-  font-family: 'Sorts Mill Goudy', serif;
-  text-align: center;
-  padding-bottom: 10px;
-  padding-top: 30px;
-  font-size: 2em;
-  color: rgb(255,223,50);
+.skills {
+    text-align: center;
+    padding-bottom: 70px; 
+}
+
+.top {
+    padding-top: 200px;
+    width: 105%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-image: url(/img/blue_sunrise_2.jpg);
+    text-align: center;
+    color: white; 
+    padding-bottom: 30px;
+
+}
+.ventev img {
+    padding-bottom: 0px;
 }
 .work {
     text-align: center;
@@ -102,20 +146,20 @@ body {
     padding-top: 40px;  
     vertical-align: middle;
 }
-.skills {
+
+/*.downarrow {
+    margin-top: 450px;
+    margin-left: 90%;
+    padding-top: 5px;
     text-align: center;
-}
-.footer {
-    padding-left: 15px;
-    color: rgb(255,223,50);
-    padding-top: 10px;
-    padding-bottom: 5px;
-    font-size: 1em;
-    background-color: rgb(16,37,66);
-}
-.footer h3 {s
-    text-align: left;
-    font-family: 'Sorts Mill Goudy', serif;
-    text-decoration: underline;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(245,105,86);
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    font-size: 1.5em;
 }
 
+.downarrow:hover {
+    background-color: rgb(179,163,148);
+}*/
