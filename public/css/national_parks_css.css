@@ -1,0 +1,52 @@
+	.background{
+		background-repeat: no-repeat;	
+  		background: center, fixed,
+	    linear-gradient(
+	      rgba(192,197,206, 0.45), 
+	      rgba(192,197,206, 0.45)
+	    ),
+	    url(/img/grand_canyon.jpg);
+	}
+
+	.header{
+		padding-top: 8px;
+		background: black;
+	}
+	.heading{
+		color: white;
+		text-align: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		font-size: 50px;
+	}
+
+	.links{
+		font-size: 1.3em;
+	}
+	.next{
+		text-align: right;
+	}
+	.logo img{
+		margin: auto;
+	}
+	.park{
+		border-radius: 5px;
+		background-color: rgb(226,223,227);
+		padding-left: 20px;
+		padding-top: 10px;
+		margin: 10px;
+		height: 175px;
+		font-size: 1.2em;
+	}
+
+	.previous{
+		text-align: left;
+	}
+
+	.spacer{
+		padding-bottom: 100px;
+	}
+	.table_area{
+		margin-top: 30px;
+		background-color: white;
+	}
