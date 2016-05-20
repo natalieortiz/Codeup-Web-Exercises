@@ -1,5 +1,6 @@
 <?php 
 
+
 require '../db_credentials.php';
 
 require '../db_connect.php';
@@ -7,7 +8,11 @@ require '../db_connect.php';
 require_once '../Input.php';
 
 
-    $stmt = $dbc->query('SELECT * FROM national_parks');
+
+function pageController($dbc)
+{
+
+	$stmt = $dbc->query('SELECT * FROM national_parks');
     $rows = $stmt->rowCount();
 
     $maxpage = ceil($rows / 4);
@@ -18,34 +23,68 @@ require_once '../Input.php';
 
 
     $parks = array();
-    if ($page == 1) {
-	    $parks = $dbc->query("SELECT * FROM national_parks ORDER BY name ASC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
+	$offset = ($page -1) * 4;
+	$stmt = $dbc->prepare("SELECT * FROM national_parks ORDER BY name ASC LIMIT 4 OFFSET :offset");
+	$stmt->bindValue(':offset',$offset, PDO::PARAM_INT);
+	$stmt->execute();
+	$parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    } else if ($page >= 2) {
-    	$offset = ($page -1) * 4;
-    	$stmt = $dbc->prepare("SELECT * FROM national_parks ORDER BY name ASC LIMIT 4 OFFSET :offset");
-    	$stmt->bindValue(':offset',$offset, PDO::PARAM_INT);
-    	$stmt->execute();
-    	$parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+	return [
+		'page' => $page,
+		'maxpage' => $maxpage,
+		'minpage' => $minpage,
+		'parks' => $parks
+	];
 
+} 
 
-	if ($_SERVER['REQUEST_METHOD'] === 'POST' && Input::has('park_name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description')){
+extract(pageController($dbc));
 
-		$park_name = Input::get('park_name');
-		$location = Input::get('location');
-		$date_established = Input::get('date_established');
-		$area_in_acres = Input::get('area_in_acres');
-		$description = Input::get('park_description');
+	$errors = [];
 
-		$stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
+	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-		$stmt->bindValue(':name', $park_name, PDO::PARAM_STR);
-		$stmt->bindValue(':location', $location, PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $date_established, PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', $area_in_acres, PDO::PARAM_STR);
-		$stmt->bindValue(':description', $description, PDO::PARAM_STR);
-		$stmt->execute();
+		
+		try {
+			$park_name = Input::getString('park_name');	
+		} catch (Exception $e){
+			$errors[] = $e->getmessage();
+		}
+
+		try {
+			$location = Input::getString('location');
+		} catch (Exception $e){
+			$errors[] = $e->getmessage();
+		}
+
+		try {
+			$date_established = Input::get('date_established');
+		} catch (Exception $e){
+			$errors[] = $e->getmessage();
+		}
+
+		try {
+			$area_in_acres = Input::getNumber('area_in_acres');
+		} catch (Exception $e){
+			$errors[] = $e->getmessage();
+		}
+
+		try {
+			$description = Input::getString('park_description');
+		} catch (Exception $e){
+			$errors[] = $e->getmessage();
+		}
+
+		if (empty($errors)){
+			$stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
+
+			$stmt->bindValue(':name', $park_name, PDO::PARAM_STR);
+			$stmt->bindValue(':location', $location, PDO::PARAM_STR);
+			$stmt->bindValue(':date_established', $date_established, PDO::PARAM_STR);
+			$stmt->bindValue(':area_in_acres', $area_in_acres, PDO::PARAM_STR);
+			$stmt->bindValue(':description', $description, PDO::PARAM_STR);
+			$stmt->execute();
+		}
 
 	}
 
@@ -168,7 +207,7 @@ require_once '../Input.php';
 			</div>
 		</div>
 	</div>
-	<div class="rowd">
+	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="table_area">
 			<table class="table table-striped table-hover">
@@ -190,6 +229,9 @@ require_once '../Input.php';
 			 	<?php endforeach; ?>
 			</table>
 			</div>
+			<?php foreach ($errors as $error): ?>
+				<p class="error"><?= $error ?></p>
+			<?php endforeach; ?>
 		</div>
 	</div>
 		<div class="row">
