@@ -25,6 +25,35 @@ class Input
         return self::has($key) ? $_REQUEST[$key] : $default;
     }
 
+    public static function getString($key)
+    {
+        if (!is_string(self::get($key)) || is_numeric(self::get($key)))
+        {
+            throw new Exception('Value must be a string.');
+        } 
+
+        return trim(self::get($key));
+    }
+
+    public static function getNumber($key)
+    {   
+        $potentialNumber = self::get($key);
+
+        if(!is_numeric($potentialNumber))
+        {
+            throw new Exception('Value must be an integer.');
+        }
+
+        $findme = '.';
+        if (strpos($potentialNumber, $findme) === false){
+            return intval($potentialNumber);
+        } else {
+            return floatval($potentialNumber);
+        }
+
+    }
+
+    
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //
     // The Input class should not ever be instantiated, so we prevent the    //

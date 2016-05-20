@@ -1,8 +1,6 @@
 <?php 
 
 require_once 'Log.php';
-require_once 'Input.php';
-
 
 
 class Auth
@@ -31,7 +29,7 @@ class Auth
 
 	public static function user()
 	{
-		return self::check() ? $_SESSION['logged_in_user'] : null;
+		return $_SESSION['logged_in_user'];
 	}
 
 	public static function logout()
