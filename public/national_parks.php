@@ -21,6 +21,7 @@ function pageController($dbc)
 
 	$page = !isset($_GET['page']) ? 1 : $_GET['page'];
 
+	$states = [ 'Alabama' , 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
     $parks = array();
 	$offset = ($page -1) * 4;
@@ -33,7 +34,8 @@ function pageController($dbc)
 		'page' => $page,
 		'maxpage' => $maxpage,
 		'minpage' => $minpage,
-		'parks' => $parks
+		'parks' => $parks,
+		'states' => $states
 	];
 
 } 
@@ -47,33 +49,47 @@ extract(pageController($dbc));
 		
 		try {
 			$park_name = Input::getString('park_name');	
-		} catch (Exception $e){
-			$errors[] = $e->getmessage();
+		} catch (OutOfRangeException $e){
+			$errors[] = 'Must enter a value for park name.';
+		} catch (DomainException $e){
+			$errors[] = 'Park name must have a text value.';
+		} catch (LengthException $e){
+			$errors[] = 'Park name must be greater than 1 character and less than 255 characters.';
 		}
 
 		try {
 			$location = Input::getString('location');
-		} catch (Exception $e){
-			$errors[] = $e->getmessage();
+		} catch (OutOfRangeException $e){
+			$errors[] = 'Must select a state for location.';
+		} catch (DomainException $e){
+			$errors[] = 'Location must be a state.';
+		} catch (LengthException $e){
+			$errors[] = 'Location name must be greater than 1 character and less than 255 characters.';
 		}
 
 		try {
-			$date_established = Input::get('date_established');
+			$date_established = Input::getDate('date_established');
 		} catch (Exception $e){
 			$errors[] = $e->getmessage();
 		}
 
 		try {
 			$area_in_acres = Input::getNumber('area_in_acres');
-		} catch (Exception $e){
-			$errors[] = $e->getmessage();
+		} catch (OutOfRangeException $e){
+			$errors[] = 'Must enter a value for area in acres.';
+		} catch (DomainException $e){
+			$errors[] = 'Area in acres must be a number.';
+		} catch (RangeException $e){
+			$errors[] = 'Value for area in acres must be greater than 1 and less than 10,000,000.';
 		}
 
 		try {
-			$description = Input::getString('park_description');
-		} catch (Exception $e){
-			$errors[] = $e->getmessage();
-		}
+			$description = Input::getText('park_description');
+		} catch (OutOfRangeException $e){
+			$errors[] = 'Must enter a park description.';
+		} catch (DomainException $e){
+			$errors[] = 'Park description cannot be a number.';
+		} 
 
 		if (empty($errors)){
 			$stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
@@ -91,17 +107,18 @@ extract(pageController($dbc));
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>National Parks</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
 	<link rel="stylesheet" href="/css/national_parks_css.css">
 
 </head>
-<body>
+<body class="background">
 <!-- Modal -->
 <div class="modal fade" id="park_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -114,77 +131,63 @@ extract(pageController($dbc));
       		<form method="POST">
 				  <div class="form-group">
 				    <label for="park_name">Park Name</label>
-				    <input type="text" name="park_name" class="form-control" id="park_name" placeholder="Park Name">
+				    <input type="text"
+				    	name="park_name"
+				    	class="form-control"
+				    	id="park_name"
+				    	placeholder="Park Name"
+				    	value="<?= (isset($_POST['park_name'])) ? $_POST['park_name'] : '' ?>">
 				  </div>
 				  <div class="form-group">
 				    <label for="location">Location</label>
 					<select class="form-control" id="location" name="location">
-						<option>Alabama</option>
-						<option>Alaska</option>
-						<option>Arizona</option>
-						<option>Arkansas</option>
-						<option>California</option>
-						<option>Colorado</option>
-						<option>Connecticut</option>
-						<option>Delaware</option>
-						<option>Florida</option>
-						<option>Georgia</option>
-						<option>Hawaii</option>
-						<option>Idaho</option>
-						<option>Illinois</option>
-						<option>Indiana</option>
-						<option>Iowa</option>
-						<option>Kansas</option>
-						<option>Kentucky</option>
-						<option>Louisiana</option>
-						<option>Maine</option>
-						<option>Maryland</option>
-						<option>Massachusetts</option>
-						<option>Michigan</option>
-						<option>Minnesota</option>
-						<option>Mississippi</option>
-						<option>Missouri</option>
-						<option>Montana</option>
-						<option>Nebraska</option>
-						<option>Nevada</option>
-						<option>New Hampshire</option>
-						<option>New Jersey</option>
-						<option>New Mexico</option>
-						<option>New York</option>
-						<option>North Carolina</option>
-						<option>North Dakota</option>
-						<option>Ohio</option>
-						<option>Oklahoma</option>
-						<option>Oregon</option>
-						<option>Pennsylvania</option>
-						<option>Rhode Island</option>
-						<option>South Carolina</option>
-						<option>South Dakota</option>
-						<option>Tennessee</option>
-						<option>Texas</option>
-						<option>Utah</option>
-						<option>Vermont</option>
-						<option>Virginia</option>
-						<option>Washington</option>
-						<option>West Virginia</option>
-						<option>Wisconsin</option>
-						<option>Wyoming</option>
+
+						<?php foreach($states as $state) :
+							if($state == $_POST['location']) { ?>
+								<option selected><?= $state ?></option>
+							<?php }
+							endforeach; ?>
+
+						<?php foreach ($states as $state) : ?>
+							<option><?= $state ?></option>
+						<?php endforeach; ?>
 					</select>
 				  </div>
 				  <div class="form-group">
 				    <label for="date_established">Date Established</label>
-				    <input type="text" format="YYYY-MM-DD" class="form-control" id="date_established" name="date_established" placeholder="YYYY-MM-DD">
+				    <input type="text" 
+				    format="YYYY-MM-DD" 
+				    class="form-control" 
+				    id="date_established" 
+				    name="date_established" 
+				    placeholder="YYYY-MM-DD" 
+				    value="<?= (isset($_POST['date_established'])) ? $_POST['date_established'] : '' ?>">
 				  </div>
 				  <div class="form-group">
 				    <label for="area_in_acres">Area in Acres</label>
-				    <input type="number" min="0" step="0.01" class="form-control" id="area_in_acres" name="area_in_acres" placeholder="Area in Acres">
+				    <input type="number" min="0" step="0.01" 
+				    class="form-control" id="area_in_acres" 
+				    name="area_in_acres" placeholder="Area in Acres" 
+				    value="<?= (isset($_POST['area_in_acres'])) ? $_POST['area_in_acres'] : '' ?>">
 				  </div>
 
 				  <div class="form-group">
 				    <label for="park_description">Park Description</label>
-				    <textarea class="form-control" rows="3" name="park_description" id="park_description" placeholder="Description"></textarea>
+				    <textarea class="form-control" 
+				    rows="3" 
+				    name="park_description" 
+				    id="park_description" 
+				    placeholder="Description"
+				    ><?= (isset($_POST['park_description'])) ? $_POST['park_description'] : '' ?></textarea>
 				  </div>
 				  <button type="submit" class="btn btn-default btn-primary">Submit</button>
+				<div id="error">
+					<?php if (!empty($errors)) { 
+					foreach ($errors as $error): ?>
+						<p class="errorMessage"><?= $error ?></p>
+					<?php endforeach; 
+					} ?>
+				</div>
 			</form>
       </div>
       <div class="modal-footer">
@@ -194,7 +197,7 @@ extract(pageController($dbc));
   </div>
 </div>
 <!-- Body -->
-<div class="container-fluid background">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 header">
 			<div class="col-md-2">
@@ -229,9 +232,6 @@ extract(pageController($dbc));
 			 	<?php endforeach; ?>
 			</table>
 			</div>
-			<?php foreach ($errors as $error): ?>
-				<p class="error"><?= $error ?></p>
-			<?php endforeach; ?>
 		</div>
 	</div>
 		<div class="row">
@@ -256,17 +256,17 @@ extract(pageController($dbc));
 </div>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
 (function (){
     "use strict";
     $(document).ready(function(){
 
-
-    	$('#add_a_park').click(function(event){
+    	//checking to see if the number of .errorMessage class is more than 0.  If I get an error, .errorMessage is generated. 
+		if($('.errorMessage').length > 0) {
 			$("#park_modal").modal("show");
-		})
+		}
+
 
 
     });

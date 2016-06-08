@@ -1,7 +1,22 @@
+.about_me_heading{
+    font-family: 'Sorts Mill Goudy', serif;
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+
+.apple img {
+    padding-bottom: 9px;
+}
 body { 
     font-family: 'Josefin Sans', sans-serif;
     font-size: 2em;
     color: rgb(16,37,66);
+}
+
+.box_spacer{
+    padding-bottom: 70px;
 }
 
 .contact {
@@ -15,17 +30,20 @@ body {
     margin-top: 30px;
 }
 
+.education img{
+    margin: auto;
+}
+
 .education h1 {
-  font-family: 'Sorts Mill Goudy', serif;
-  text-align: center;
-  padding-bottom: 10px;
-  padding-top: 30px;
-  font-size: 2em;
-  color: rgb(255,223,50);
+    font-family: 'Sorts Mill Goudy', serif;
+    padding-bottom: 10px;
+    padding-top: 30px;
+    font-size: 2em;
+    color: rgb(255,223,50);
 }
 
 .edutext{
-    padding-left: 70px;
+    text-align: center; 
     padding-top: 10px;
     line-height: 225%;
     font-size: 1em; 
@@ -40,7 +58,7 @@ body {
     background-color: rgb(16,37,66);
 }
 
-.footer h3 {s
+.footer h3 {
     text-align: left;
     font-family: 'Sorts Mill Goudy', serif;
     text-decoration: underline;
@@ -63,12 +81,14 @@ body {
 #links a:hover {
     color: rgb(245,105,86);
 }
+
 .mainheading{
-  font-family: 'Sorts Mill Goudy', serif;
-  text-align: center;
-  padding-bottom: 15px;
-  padding-top: 20px;
+    font-family: 'Sorts Mill Goudy', serif;
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 20px;
 }
+
 #myname {
     font-family: 'Sorts Mill Goudy', serif;
     font-weight: bold;
@@ -92,15 +112,15 @@ body {
 }
 .objective {
     background-color: rgb(140, 206,237); 
-    padding-top: 50px;
-    padding-bottom: 30px;
 }
 
 .objective p {
-    padding-top: 25px;
     padding-left: 50px;
     padding-right: 50px; 
-    padding-bottom: 50px;
+}
+
+.rackspace img{
+    padding-bottom: 20px;
 }
 
 .skill p {
@@ -112,15 +132,22 @@ body {
     height: 270px;
     width: 300px;
     background-color: rgba(140, 206,237, .5);
-    margin: auto; 
+    margin: auto;
+    position: relative; 
 }
 .skill_list {
-    padding-top: 20px;
-    position: absolute;
+    position: relative;
 }
 .skills {
+    text-align: center; 
+    padding-bottom: 200px;
+}
+
+.skills_heading{
+    font-family: 'Sorts Mill Goudy', serif;
     text-align: center;
-    padding-bottom: 70px; 
+    padding-bottom: 30px;
+    padding-top: 60px;
 }
 
 .top {
@@ -128,18 +155,31 @@ body {
     width: 105%;
     height: 100%;
     background-repeat: no-repeat;
-    background-image: url(/img/blue_sunrise_2.jpg);
     text-align: center;
     color: white; 
-    padding-bottom: 30px;
+    background-repeat: no-repeat;   
+    background: center, fixed,
+    linear-gradient(
+      rgba(140, 206,237, 0.2), 
+      rgba(140, 206,237, 0.2)
+    ),
+    url(/img/blue_sunrise_2.jpg);
 
 }
 .ventev img {
-    padding-bottom: 0px;
+    padding-bottom: 55px;
 }
-.work {
+
+.work { 
     text-align: center;
-    padding-bottom: 70px; 
+    padding-bottom: 40px; 
+}
+
+.work_heading {
+    font-family: 'Sorts Mill Goudy', serif;
+    text-align: center;
+    padding-bottom: 40px;
+    padding-top: 60px;
 }
 
 .work .ventev {
