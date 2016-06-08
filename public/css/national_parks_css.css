@@ -8,9 +8,11 @@
 	    url(/img/grand_canyon.jpg);
 	}
 
-	.error {
-		color: white;
+	.modal-body #error .errorMessage {
+		padding-top: 10px;
+		color: red;
 		font-size: 1.5em;
+		margin-left: 10px;
 	}
 
 	.header{
